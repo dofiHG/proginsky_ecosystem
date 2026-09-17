@@ -1,0 +1,66 @@
+<?php return array (
+  'unique_key' => 'category',
+  'preserve_keys' => false,
+  'update_object' => true,
+  'related_objects' => 
+  array (
+    'Snippets' => 
+    array (
+      'fa5c8e2ccf456cdd2468b61876e78654' => 
+      array (
+        'preserve_keys' => false,
+        'update_object' => true,
+        'unique_key' => 'name',
+        'class' => 'modSnippet',
+        'object' => '{"id":0,"source":1,"property_preprocess":0,"name":"rcv3","description":"reCaptchaV3 hook for Formit","editor_type":0,"category":0,"cache_type":0,"snippet":"$recaptcha = $hook->getValue(\'g-recaptcha-response\');\\n$url_google_api = \\"https:\\/\\/www.google.com\\/recaptcha\\/api\\/siteverify\\";\\n$secret = $modx->getOption(\'formit.recaptcha_private_key\');\\n$ip = $_SERVER[\'REMOTE_ADDR\'];\\n\\n$modx->lexicon->load(\'recaptchav3:default\');\\n\\nclass Captcha{\\n    public function getCaptcha($SecretKey, $secret, $url_google_api, $ip){\\n        $response = file_get_contents($url_google_api . \\"?secret=\\" . $secret . \\"&response=\\" . $SecretKey . \\"&remoteip=\\" . $ip);\\n        $data = json_decode($response);\\n        return $data;\\n    }\\n}\\n\\nif ($recaptcha) {\\n    $ObjCaptcha = new Captcha();\\n    $data = $ObjCaptcha->getCaptcha($recaptcha, $secret, $url_google_api, $ip); \\n\\n    if ($data->success) {\\n        return true;\\n    } else {   \\n        $hook->addError(\'g-recaptcha-response\', $modx->lexicon(\'recaptchav3_check_error\'));\\n        $error_message = \\"\\";\\n        $error_message .= $modx->lexicon(\'recaptchav3_check_error_log\') . \\"<br\\/>\\";\\n        foreach ($data->{\'error-codes\'} as $k => $v) {\\n            $error_message .= \\"{$k} - {$v}<br\\/>\\";\\n        }\\n        $modx->log(MODX_LOG_LEVEL_ERROR, $error_message);\\n        return false;\\n    }\\n} else {\\n    $hook->addError(\'g-recaptcha-response\', $modx->lexicon(\'recaptchav3_check_empty_error\'));\\n    $modx->log(MODX_LOG_LEVEL_ERROR, $modx->lexicon(\'recaptchav3_check_empty_error_log\'));\\n    return false;\\n}\\n\\nreturn true;","locked":0,"properties":"a:0:{}","moduleguid":"","static":0,"static_file":"core\\/components\\/recaptchav3\\/elements\\/snippets\\/recaptchav3.php","content":"$recaptcha = $hook->getValue(\'g-recaptcha-response\');\\n$url_google_api = \\"https:\\/\\/www.google.com\\/recaptcha\\/api\\/siteverify\\";\\n$secret = $modx->getOption(\'formit.recaptcha_private_key\');\\n$ip = $_SERVER[\'REMOTE_ADDR\'];\\n\\n$modx->lexicon->load(\'recaptchav3:default\');\\n\\nclass Captcha{\\n    public function getCaptcha($SecretKey, $secret, $url_google_api, $ip){\\n        $response = file_get_contents($url_google_api . \\"?secret=\\" . $secret . \\"&response=\\" . $SecretKey . \\"&remoteip=\\" . $ip);\\n        $data = json_decode($response);\\n        return $data;\\n    }\\n}\\n\\nif ($recaptcha) {\\n    $ObjCaptcha = new Captcha();\\n    $data = $ObjCaptcha->getCaptcha($recaptcha, $secret, $url_google_api, $ip); \\n\\n    if ($data->success) {\\n        return true;\\n    } else {   \\n        $hook->addError(\'g-recaptcha-response\', $modx->lexicon(\'recaptchav3_check_error\'));\\n        $error_message = \\"\\";\\n        $error_message .= $modx->lexicon(\'recaptchav3_check_error_log\') . \\"<br\\/>\\";\\n        foreach ($data->{\'error-codes\'} as $k => $v) {\\n            $error_message .= \\"{$k} - {$v}<br\\/>\\";\\n        }\\n        $modx->log(MODX_LOG_LEVEL_ERROR, $error_message);\\n        return false;\\n    }\\n} else {\\n    $hook->addError(\'g-recaptcha-response\', $modx->lexicon(\'recaptchav3_check_empty_error\'));\\n    $modx->log(MODX_LOG_LEVEL_ERROR, $modx->lexicon(\'recaptchav3_check_empty_error_log\'));\\n    return false;\\n}\\n\\nreturn true;","file":"recaptchav3"}',
+        'guid' => '6c17a249c4be6d32854ec62cb25c5706',
+        'native_key' => 0,
+        'signature' => 'ed14c4819c309e8b505563e2523e0ac9',
+      ),
+      '2aab8e79adcda5bd64c0361afeeb54e4' => 
+      array (
+        'preserve_keys' => false,
+        'update_object' => true,
+        'unique_key' => 'name',
+        'class' => 'modSnippet',
+        'object' => '{"id":0,"source":1,"property_preprocess":0,"name":"rcv3_html","description":"reCaptchaV3 snippet","editor_type":0,"category":0,"cache_type":0,"snippet":"$public = $modx->getOption(\'formit.recaptcha_public_key\');\\n$action = $action ?: \'ajaxform\';\\n\\nif (!$modx->getPlaceholder(\'rcv3_initialized\')) {\\n    $modx->regClientStartupScript(\'<script src=\\"https:\\/\\/www.google.com\\/recaptcha\\/api.js?onload=ReCaptchaCallbackV3&render=\' . $public . \'\\" async><\\/script>\');\\n    $modx->regClientScript(\'\\n        <script>\\n            var ReCaptchaCallbackV3 = function() {\\n                grecaptcha.ready(function() {\\n                    grecaptcha.reset = grecaptchaExecute;\\n                    grecaptcha.reset();\\n                });\\n            };\\n            function grecaptchaExecute() {\\n                grecaptcha.execute(\\"\' . $public . \'\\", { action: \\"\' . $action . \'\\" }).then(function(token) {\\n                    var fieldsToken = document.querySelectorAll(\\"[name =\\\\\'g-recaptcha-response\\\\\']\\");\\n                    Array.prototype.forEach.call(fieldsToken, function(el, i){\\n                        el.value = token;\\n                    });\\n                });\\n            };\\n            \\/\\/ \\u043e\\u0431\\u043d\\u043e\\u0432\\u043b\\u044f\\u0435\\u043c \\u043a\\u0430\\u043f\\u0447\\u0443 \\u043a\\u0430\\u0436\\u0434\\u0443\\u044e \\u043c\\u0438\\u043d\\u0443\\u0442\\u0443\\n            setInterval(function() {\\n                grecaptcha.reset();\\n            }, 60000);\\n        <\\/script>\\n    \', true);\\n    $modx->setPlaceholder(\'rcv3_initialized\', 1);\\n}\\n\\n$output = \'\\n    <span class=\\"error_g-recaptcha-response error\\">\' . $error . \'<\\/span>\\n    <input type=\\"hidden\\" name=\\"g-recaptcha-response\\">\\n\';\\n\\nreturn $output;","locked":0,"properties":"a:0:{}","moduleguid":"","static":0,"static_file":"core\\/components\\/recaptchav3\\/elements\\/snippets\\/recaptchav3_html.php","content":"$public = $modx->getOption(\'formit.recaptcha_public_key\');\\n$action = $action ?: \'ajaxform\';\\n\\nif (!$modx->getPlaceholder(\'rcv3_initialized\')) {\\n    $modx->regClientStartupScript(\'<script src=\\"https:\\/\\/www.google.com\\/recaptcha\\/api.js?onload=ReCaptchaCallbackV3&render=\' . $public . \'\\" async><\\/script>\');\\n    $modx->regClientScript(\'\\n        <script>\\n            var ReCaptchaCallbackV3 = function() {\\n                grecaptcha.ready(function() {\\n                    grecaptcha.reset = grecaptchaExecute;\\n                    grecaptcha.reset();\\n                });\\n            };\\n            function grecaptchaExecute() {\\n                grecaptcha.execute(\\"\' . $public . \'\\", { action: \\"\' . $action . \'\\" }).then(function(token) {\\n                    var fieldsToken = document.querySelectorAll(\\"[name =\\\\\'g-recaptcha-response\\\\\']\\");\\n                    Array.prototype.forEach.call(fieldsToken, function(el, i){\\n                        el.value = token;\\n                    });\\n                });\\n            };\\n            \\/\\/ \\u043e\\u0431\\u043d\\u043e\\u0432\\u043b\\u044f\\u0435\\u043c \\u043a\\u0430\\u043f\\u0447\\u0443 \\u043a\\u0430\\u0436\\u0434\\u0443\\u044e \\u043c\\u0438\\u043d\\u0443\\u0442\\u0443\\n            setInterval(function() {\\n                grecaptcha.reset();\\n            }, 60000);\\n        <\\/script>\\n    \', true);\\n    $modx->setPlaceholder(\'rcv3_initialized\', 1);\\n}\\n\\n$output = \'\\n    <span class=\\"error_g-recaptcha-response error\\">\' . $error . \'<\\/span>\\n    <input type=\\"hidden\\" name=\\"g-recaptcha-response\\">\\n\';\\n\\nreturn $output;","file":"recaptchav3_html"}',
+        'guid' => '150d72112fbf27e4857b6e861ec4996d',
+        'native_key' => 0,
+        'signature' => '0dc3549718eb26dbb673df640fb4dbb5',
+      ),
+    ),
+  ),
+  'related_object_attributes' => 
+  array (
+    'Snippets' => 
+    array (
+      'preserve_keys' => false,
+      'update_object' => true,
+      'unique_key' => 'name',
+    ),
+  ),
+  'namespace' => 'recaptchav3',
+  'resolve' => 
+  array (
+    0 => 
+    array (
+      'type' => 'file',
+      'body' => '{"source":"recaptchav3-1.0.6-beta\\/modCategory\\/6dc7b1e85e74a8cca0177bdedcb23efc\\/0\\/","target":"return MODX_CORE_PATH . \'components\\/\';","name":"recaptchav3"}',
+    ),
+    1 => NULL,
+    2 => 
+    array (
+      'type' => 'php',
+      'body' => '{"source":"recaptchav3-1.0.6-beta\\/modCategory\\/6dc7b1e85e74a8cca0177bdedcb23efc.symlinks.resolver","type":"php","name":"symlinks"}',
+    ),
+  ),
+  'validate' => NULL,
+  'vehicle_package' => 'transport',
+  'vehicle_class' => 'xPDOObjectVehicle',
+  'guid' => '05458ed78a2ee77419ed5b6529beca3d',
+  'package' => 'modx',
+  'class' => 'modCategory',
+  'signature' => '6dc7b1e85e74a8cca0177bdedcb23efc',
+  'native_key' => NULL,
+  'object' => '{"id":null,"parent":0,"category":"reCaptchaV3","rank":0}',
+);

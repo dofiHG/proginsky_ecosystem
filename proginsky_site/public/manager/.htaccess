@@ -1,0 +1,8 @@
+RewriteEngine On
+RewriteCond %{HTTP_USER_AGENT} (googlebot|bingbot|yandex|baiduspider|ia_archiver|ahrefsbot|mj12bot|semrushbot|rogerbot|dotbot|gigabot|exabot|ltx71|python-requests|seznambot|naverbot) [NC]
+RewriteRule .* - [F,L]
+
+AuthType Basic
+AuthName "Restricted Area"
+AuthUserFile /opt/proginsky_ecosystem/proginsky_site/public/manager/.htpasswd
+Require valid-user

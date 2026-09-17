@@ -1,0 +1,16 @@
+<?php return array (
+  'unique_key' => 'key',
+  'preserve_keys' => true,
+  'update_object' => false,
+  'namespace' => 'upgrademodx',
+  'resolve' => NULL,
+  'validate' => NULL,
+  'vehicle_package' => 'transport',
+  'vehicle_class' => 'xPDOObjectVehicle',
+  'guid' => 'f8f6a6dfb51d012f2fcb02f7142c313d',
+  'package' => 'modx',
+  'class' => 'modSystemSetting',
+  'signature' => 'abd47792150b5aec6362ec9b3dd7b7c5',
+  'native_key' => 'ugm_pl_only',
+  'object' => '{"key":"ugm_pl_only","value":"1","xtype":"combo-boolean","namespace":"upgrademodx","area":"Form","editedon":null,"name":"pl Versions Only","description":"Show only pl (stable) versions; default: yes"}',
+);

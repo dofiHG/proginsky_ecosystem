@@ -1,0 +1,50 @@
+<?php return array (
+  'preserve_keys' => true,
+  'update_object' => true,
+  'unique_key' => 'text',
+  'related_objects' => 
+  array (
+    'Action' => 
+    array (
+      'b951088762f1169b87b1f64020785d34' => 
+      array (
+        'preserve_keys' => false,
+        'update_object' => true,
+        'unique_key' => 
+        array (
+          0 => 'namespace',
+          1 => 'controller',
+        ),
+        'class' => 'modAction',
+        'object' => '{"id":1,"namespace":"ditsformsaver","parent":0,"controller":"index","haslayout":1,"lang_topics":"ditsformsaver:default,file","assets":"","help_url":""}',
+        'guid' => 'ba68cd8d178caef05f5f6e62bbd2cc30',
+        'native_key' => 1,
+        'signature' => 'dc794745d76ffb72c1488cbc56caa784',
+      ),
+    ),
+  ),
+  'related_object_attributes' => 
+  array (
+    'Action' => 
+    array (
+      'preserve_keys' => false,
+      'update_object' => true,
+      'unique_key' => 
+      array (
+        0 => 'namespace',
+        1 => 'controller',
+      ),
+    ),
+  ),
+  'namespace' => 'ditsformsaver',
+  'resolve' => NULL,
+  'validate' => NULL,
+  'vehicle_package' => 'transport',
+  'vehicle_class' => 'xPDOObjectVehicle',
+  'guid' => '20120be6b87e9a5d72eb8e4dae10b6ce',
+  'package' => 'modx',
+  'class' => 'modMenu',
+  'signature' => '880565e0304b5f3019d4bc92649a7df6',
+  'native_key' => 'ditsformsaver',
+  'object' => '{"text":"ditsformsaver","parent":"components","action":1,"description":"ditsformsaver.desc","icon":"","menuindex":0,"params":"","handler":"","permissions":""}',
+);

@@ -1,0 +1,16 @@
+<?php return array (
+  'unique_key' => 'key',
+  'preserve_keys' => true,
+  'update_object' => false,
+  'namespace' => 'upgrademodx',
+  'resolve' => NULL,
+  'validate' => NULL,
+  'vehicle_package' => 'transport',
+  'vehicle_class' => 'xPDOObjectVehicle',
+  'guid' => 'efccc5c252d36bc92d27b57bb4c38083',
+  'package' => 'modx',
+  'class' => 'modSystemSetting',
+  'signature' => 'a48ef5e90e004eb63977cbb8c158eb9f',
+  'native_key' => 'ugm_groups',
+  'object' => '{"key":"ugm_groups","value":"Administrator","xtype":"textfield","namespace":"upgrademodx","area":"Security","editedon":null,"name":"setting_ugm_groups","description":"setting_ugm_groups_desc"}',
+);

@@ -1,0 +1,54 @@
+<?php return array (
+  'unique_key' => 'category',
+  'preserve_keys' => false,
+  'update_object' => true,
+  'related_objects' => 
+  array (
+    'Snippets' => 
+    array (
+      '68697597d005bc1cf3aab008f34abd9c' => 
+      array (
+        'preserve_keys' => false,
+        'update_object' => true,
+        'unique_key' => 'name',
+        'class' => 'modSnippet',
+        'object' => '{"id":0,"name":"ditsformsaver","description":"FormIt hook saving form results","editor_type":0,"category":0,"cache_type":0,"snippet":"\\/**\\n * @package ditsformsaver\\n *\\/\\nif (!isset($modx->ditsformsaver)) {\\n    $modx->addPackage(\'ditsformsaver\', $modx->getOption(\'core_path\').\'components\\/ditsformsaver\\/model\\/\');\\n    $modx->ditsformsaver = $modx->getService(\'ditsformsaver\', \'Ditsformsaver\', $modx->getOption(\'core_path\').\'components\\/ditsformsaver\\/model\\/ditsformsaver\\/\');\\n}\\n\\n$allFormFields = $hook->getValues();\\n\\nif($allFormFields[\'dfsForm\'] && $form = $modx->getObject(\'dfsForm\', $allFormFields[\'dfsForm\'])){\\n    \\/\\/form found, save selected fields\\n    $fields = str_replace(\', \', \',\', $form->get(\'fields\'));\\n    $fields = trim($fields);\\n    $fields = explode(\',\', $fields);\\n    $form = $form->get(\'id\');\\n\\n    $formResult = $modx->newObject(\'dfsResult\');\\n    $formResult->fromArray(array(\\n        \'form_id\' => $form,\\n        \'ip\' => $_SERVER[\'REMOTE_ADDR\']\\n    ));\\n    $formResult->save();\\n    $formResult = $formResult->get(\'id\');\\n\\n    foreach($fields as $field) {\\n        if(!empty($_POST[$field])) {\\n            $value = $modx->newObject(\'dfsValue\');\\n            $value->fromArray(array(\\n                \'result_id\' => $formResult,\\n                \'fieldname\' => $field,\\n                \'fieldvalue\' => (is_array($_POST[$field]) ? implode(\', \', $_POST[$field]) : $_POST[$field]),\\n            ));\\n            $value->save();\\n        }\\n    }\\n    return true;\\n}\\nelse\\n{\\n    \\/\\/form not found, show FormIt error\\n    $hook->addError(\'error_msg\', \'DitsFormSaver: \'.$modx->lexicon(\'ditsformsaver.form.err_nf\') );\\n    return false;\\n}","locked":0,"properties":null,"moduleguid":""}',
+        'guid' => 'ae0821cc0a70172cb21cb26b89f63739',
+        'native_key' => 0,
+        'signature' => '0c98b05f43aebc197380ad3c68331d94',
+      ),
+    ),
+  ),
+  'related_object_attributes' => 
+  array (
+    'Snippets' => 
+    array (
+      'preserve_keys' => false,
+      'update_object' => true,
+      'unique_key' => 'name',
+    ),
+  ),
+  'namespace' => 'ditsformsaver',
+  'resolve' => 
+  array (
+    0 => 
+    array (
+      'type' => 'file',
+      'body' => '{"source":"ditsformsaver-0.1-Alpha\\/modCategory\\/937311d3a2137f784f723ea2f6bd7ce5\\/0\\/","target":"return MODX_CORE_PATH . \'components\\/\';","name":"ditsformsaver"}',
+    ),
+    1 => 
+    array (
+      'type' => 'file',
+      'body' => '{"source":"ditsformsaver-0.1-Alpha\\/modCategory\\/937311d3a2137f784f723ea2f6bd7ce5\\/1\\/","target":"return MODX_ASSETS_PATH . \'components\\/\';","name":"ditsformsaver"}',
+    ),
+  ),
+  'validate' => NULL,
+  'vehicle_package' => 'transport',
+  'vehicle_class' => 'xPDOObjectVehicle',
+  'guid' => '6ea2f7741e929aa45750afa15849be31',
+  'package' => 'modx',
+  'class' => 'modCategory',
+  'signature' => '937311d3a2137f784f723ea2f6bd7ce5',
+  'native_key' => 1,
+  'object' => '{"id":1,"parent":0,"category":"DitsFormSaver"}',
+);

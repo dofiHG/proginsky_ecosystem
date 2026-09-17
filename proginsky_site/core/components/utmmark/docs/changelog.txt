@@ -1,0 +1,27 @@
+Changelog for utmMark.
+
+1.0.5-beta
+==============
+- add support minishop2
+
+1.0.4-beta
+==============
+- create package for modstore.pro
+- add en lexicon
+- add properties for snippets
+
+1.0.3-beta
+==============
+- replace "{" "}" for Fenom
+
+1.0.2-beta
+==============
+- add organic traffic
+
+1.0.1-beta
+==============
+- save to cookie on 24 hours
+
+1.0.0-beta
+==============
+- First version

@@ -1,0 +1,12 @@
+<?php return array (
+  'preserve_keys' => true,
+  'update_object' => false,
+  'vehicle_package' => 'transport',
+  'vehicle_class' => 'xPDOObjectVehicle',
+  'guid' => 'c40c4f8df0ae9d84f309e4e03cdf6cad',
+  'package' => 'modx',
+  'class' => 'modSystemSetting',
+  'signature' => 'd1d26c6359883139b9f13047372ae3fb',
+  'native_key' => 'default_username',
+  'object' => '{"key":"default_username","value":"(anonymous)","xtype":"textfield","namespace":"core","area":"session","editedon":null}',
+);

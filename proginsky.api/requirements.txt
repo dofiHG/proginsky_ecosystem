@@ -1,0 +1,7 @@
+fastapi[standard]
+uvicorn
+sqlalchemy[asyncio]
+asyncpg
+pydantic[email]
+redis
+httpx

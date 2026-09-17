@@ -1,0 +1,16 @@
+<?php return array (
+  'unique_key' => 'key',
+  'preserve_keys' => true,
+  'update_object' => false,
+  'namespace' => 'upgrademodx',
+  'resolve' => NULL,
+  'validate' => NULL,
+  'vehicle_package' => 'transport',
+  'vehicle_class' => 'xPDOObjectVehicle',
+  'guid' => '4f184063f2f6fef25591041991ff4ac2',
+  'package' => 'modx',
+  'class' => 'modSystemSetting',
+  'signature' => 'd5690dd21db4585cb4371eab9af1fc61',
+  'native_key' => 'ugm_versions_to_show',
+  'object' => '{"key":"ugm_versions_to_show","value":"5","xtype":"textfield","namespace":"upgrademodx","area":"Form","editedon":null,"name":"Versions To Show","description":"Number of versions to show in upgrade form; default: 5"}',
+);

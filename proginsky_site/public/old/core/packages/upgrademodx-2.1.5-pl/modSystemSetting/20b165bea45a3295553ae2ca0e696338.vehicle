@@ -1,0 +1,16 @@
+<?php return array (
+  'unique_key' => 'key',
+  'preserve_keys' => true,
+  'update_object' => false,
+  'namespace' => 'upgrademodx',
+  'resolve' => NULL,
+  'validate' => NULL,
+  'vehicle_package' => 'transport',
+  'vehicle_class' => 'xPDOObjectVehicle',
+  'guid' => '7029757228918f02f72e882189636557',
+  'package' => 'modx',
+  'class' => 'modSystemSetting',
+  'signature' => '20b165bea45a3295553ae2ca0e696338',
+  'native_key' => 'ugm_versionlist_api_url',
+  'object' => '{"key":"ugm_versionlist_api_url","value":"\\/\\/api.github.com\\/repos\\/modxcms\\/revolution\\/tags","xtype":"textfield","namespace":"upgrademodx","area":"Widget","editedon":null,"name":"Version List API URL","description":"URL of API to get version list from"}',
+);

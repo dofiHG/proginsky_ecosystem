@@ -1,0 +1,31 @@
+{
+  "name": "treehillstudio/backupmodx",
+  "authors": [
+    {
+      "name": "Jan Dähne",
+      "email": "info@quadro-system.de"
+    },
+    {
+      "name": "Thomas Jakobi",
+      "email": "office@treehillstudio.com"
+    }
+  ],
+  "license": "GPL-2.0-or-later",
+  "config": {
+    "platform": {
+      "php": "7.4"
+    }
+  },
+  "require": {
+    "php": ">=7.4",
+    "ext-json": "*",
+    "ext-openssl": "*",
+    "ifsnop/mysqldump-php": "^2.7",
+    "madnest/madzipper": "^1.2"
+  },
+  "autoload": {
+    "psr-4": {
+      "BackupMODX\\": "src/"
+    }
+  }
+}

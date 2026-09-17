@@ -1,0 +1,16 @@
+<?php return array (
+  'unique_key' => 'key',
+  'preserve_keys' => true,
+  'update_object' => false,
+  'namespace' => 'upgrademodx',
+  'resolve' => NULL,
+  'validate' => NULL,
+  'vehicle_package' => 'transport',
+  'vehicle_class' => 'xPDOObjectVehicle',
+  'guid' => '82ea059132bbd725d325d66f68f357cb',
+  'package' => 'modx',
+  'class' => 'modSystemSetting',
+  'signature' => 'd76e246ea04b14ad30a5710c11e26fba',
+  'native_key' => 'ugm_version_list_path',
+  'object' => '{"key":"ugm_version_list_path","value":"{core_path}cache\\/upgrademodx\\/","xtype":"textfield","namespace":"upgrademodx","area":"Widget","editedon":null,"name":"setting_ugm_version_list_path","description":"setting_ugm_version_list_path_desc"}',
+);

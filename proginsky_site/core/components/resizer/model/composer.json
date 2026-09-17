@@ -1,0 +1,12 @@
+{
+	"repositories": [
+    {
+        "type": "vcs",
+        "url": "https://github.com/sepiariver/Reductionist"
+    }
+],
+	"require": {
+		"sepiariver/reductionist": "master"
+	},
+	"minimum-stability": "dev"
+}

@@ -1,0 +1,19 @@
+<IfModule mod_mime.c>
+  AddEncoding br .br
+  AddEncoding gzip .gz
+  AddType application/javascript .js
+  AddType application/wasm .wasm
+</IfModule>
+
+<FilesMatch "\.js\.br$">
+  ForceType application/javascript
+  Header set Content-Encoding br
+</FilesMatch>
+<FilesMatch "\.wasm\.br$">
+  ForceType application/wasm
+  Header set Content-Encoding br
+</FilesMatch>
+<FilesMatch "\.data\.br$">
+  ForceType application/octet-stream
+  Header set Content-Encoding br
+</FilesMatch>

@@ -1,0 +1,16 @@
+<?php return array (
+  'unique_key' => 'key',
+  'preserve_keys' => true,
+  'update_object' => false,
+  'namespace' => 'upgrademodx',
+  'resolve' => NULL,
+  'validate' => NULL,
+  'vehicle_package' => 'transport',
+  'vehicle_class' => 'xPDOObjectVehicle',
+  'guid' => 'a5b1f0075c9cacf8b65d1a7f3dfcf750',
+  'package' => 'modx',
+  'class' => 'modSystemSetting',
+  'signature' => 'f633c7c34875c9305d7836ea99d43fc4',
+  'native_key' => 'ugm_pl_only',
+  'object' => '{"key":"ugm_pl_only","value":"1","xtype":"combo-boolean","namespace":"upgrademodx","area":"Form","editedon":null,"name":"setting_ugm_pl_only","description":"setting_ugm_pl_only_desc"}',
+);

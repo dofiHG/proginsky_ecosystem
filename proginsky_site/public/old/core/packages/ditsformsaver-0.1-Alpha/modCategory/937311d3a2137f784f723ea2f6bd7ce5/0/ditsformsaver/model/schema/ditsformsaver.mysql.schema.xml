@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model package="ditsformsaver" baseClass="xPDOObject" platform="mysql" defaultEngine="MyISAM">
+    <object class="dfsForm" table="ditsformsaver_forms" extends="xPDOSimpleObject">
+        <field key="name" dbtype="varchar" precision="255" phptype="string" null="false" default=""/>
+        <field key="fields" dbtype="text" phptype="string" null="false" default=""/>
+        <composite alias="Results" class="dfsResult" local="id" foreign="form_id" cardinality="many" owner="local" />
+    </object>
+    
+    <object class="dfsResult" table="ditsformsaver_results" extends="xPDOSimpleObject">
+        <field key="form_id" dbtype="int" precision="10" phptype="integer" null="false" default="" index="index" />
+        <field key="ip" dbtype="varchar" precision="39" phptype="string" null="false" default=""/> <!-- 39 = max length of IPv6 address -->
+
+        <aggregate alias="Form" class="dfsForm" local="form_id" foreign="id" cardinality="one" owner="foreign" />
+        <composite alias="Values" class="dfsValue" local="id" foreign="result_id" cardinality="many" owner="local" />
+    </object>
+
+    <object class="dfsValue" table="ditsformsaver_values" extends="xPDOSimpleObject">
+        <field key="result_id" dbtype="int" precision="10" phptype="integer" null="false" default="" index="index" />
+        <field key="fieldname" dbtype="varchar" precision="255" phptype="string" null="false" default=""/>
+        <field key="fieldvalue" dbtype="text" phptype="string" null="false" default="" />
+
+        <aggregate alias="Result" class="dfsResult" local="result_id" foreign="id" cardinality="one" owner="foreign" />
+    </object>
+</model>

@@ -1,0 +1,16 @@
+<?php return array (
+  'unique_key' => 'key',
+  'preserve_keys' => true,
+  'update_object' => false,
+  'namespace' => 'admintools',
+  'resolve' => NULL,
+  'validate' => NULL,
+  'vehicle_package' => 'transport',
+  'vehicle_class' => 'xPDOObjectVehicle',
+  'guid' => 'df46399e80eb00e73214d58bc1daa0b4',
+  'package' => 'modx',
+  'class' => 'modSystemSetting',
+  'signature' => 'ddff25424bbd6d08e4cbc685a49ca22e',
+  'native_key' => 'admintools_email_authorization',
+  'object' => '{"key":"admintools_email_authorization","value":false,"xtype":"combo-boolean","namespace":"admintools","area":"admintools_authorization","editedon":null}',
+);

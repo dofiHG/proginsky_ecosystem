@@ -1,0 +1,16 @@
+<?php return array (
+  'unique_key' => 'key',
+  'preserve_keys' => true,
+  'update_object' => false,
+  'namespace' => 'upgrademodx',
+  'resolve' => NULL,
+  'validate' => NULL,
+  'vehicle_package' => 'transport',
+  'vehicle_class' => 'xPDOObjectVehicle',
+  'guid' => 'd6a0bc3eca8a56b36c11b7f3a46f3868',
+  'package' => 'modx',
+  'class' => 'modSystemSetting',
+  'signature' => '57b0ef6fdfb73a214fbe87fddff9513e',
+  'native_key' => 'ugm_temp_dir',
+  'object' => '{"key":"ugm_temp_dir","value":"{base_path}ugmtemp\\/","xtype":"textfield","namespace":"upgrademodx","area":"Widget","editedon":null,"name":"setting_ugm_temp_dir","description":"setting_ugm_temp_dir_desc"}',
+);

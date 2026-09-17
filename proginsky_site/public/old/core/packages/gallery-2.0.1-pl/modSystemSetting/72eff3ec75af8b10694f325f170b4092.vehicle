@@ -1,0 +1,16 @@
+<?php return array (
+  'unique_key' => 'key',
+  'preserve_keys' => true,
+  'update_object' => false,
+  'namespace' => 'gallery',
+  'resolve' => NULL,
+  'validate' => NULL,
+  'vehicle_package' => 'transport',
+  'vehicle_class' => 'xPDOObjectVehicle',
+  'guid' => 'bbad9e2e21c6122a5eb36a82c8fd3b21',
+  'package' => 'modx',
+  'class' => 'modSystemSetting',
+  'signature' => '72eff3ec75af8b10694f325f170b4092',
+  'native_key' => 'gallery.mediaSource',
+  'object' => '{"key":"gallery.mediaSource","value":1,"xtype":"modx-combo-source","namespace":"gallery","area":"backend","editedon":null}',
+);

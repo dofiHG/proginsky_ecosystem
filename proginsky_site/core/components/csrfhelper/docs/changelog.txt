@@ -1,0 +1,20 @@
+CSRF Helper 1.1.0-pl
+----------------------
+Released on 2022-04-14
+
+- Fix MODX3 compatibility
+- Allow translating the error message through a new lexicon [#3]
+- Update paragonie/random_compat to 2.0.21
+
+CSRF Helper 1.0.0-pl
+----------------------
+Released on 2019-07-26
+
+- Make sure tokens that expired are considered invalid
+- Allow logging out without a CSRF token [#2]
+
+CSRF Helper 1.0.0-rc1
+----------------------
+Released on 2018-10-23
+
+- Initial release.

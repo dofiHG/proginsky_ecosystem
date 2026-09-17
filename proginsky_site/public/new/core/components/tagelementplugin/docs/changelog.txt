@@ -1,0 +1,75 @@
+1.3.1-pl
+==============
+- Bugfixes.
+
+1.3.0-pl
+==============
+- Added support of Fenom file element syntax.
+
+1.2.4-pl
+==============
+- Fixed bug with browser warning about unsaved data.
+
+1.2.3-pl
+==============
+- Fixed the name of the id attribute of the textarea field.
+
+1.2.2-pl
+==============
+- Fixed bug with the element name field when more then one quick dialog are opened.
+
+1.2.1-pl
+==============
+- Fixed bug with "save as" command.
+
+1.2.0-pl
+==============
+- tagElementPlugin is also available in the snippet and plugin forms.
+- Added keyboard shortcuts to work with chunks. By default, <Ctrl>+<Alt>+<C> and <Ctrl>+<Shift>+<Alt>+<C>.
+- Added "Save as" button to the quick update dialogs.
+
+1.1.4-pl
+==============
+- The "Select element options" dialog (shown by pressing <Ctrl>+<Insert>) takes into account specified parameters.
+
+1.1.3-pl
+==============
+- Bind <Ctrl+S> and <Ctrl+Shift+S> to the buttons "Save" and "Save and close" of the quick edit dialogs.
+
+1.1.2-pl
+==============
+- Allow to create the system settings.
+
+1.1.1-pl
+==============
+- Added system settings allow users to customize the keyboard shortcuts.
+
+1.1.0-pl
+==============
+- Added the ability to set parameters for snippets and chunks. Select a snippet tag and press Ctrl+Insert. It looks the same as when grag'n'droping elements.
+
+1.0.5-pl
+==============
+- Fixed bug of setting element name to field "Name" of the quick create element dialog.
+- Added check the changes to prevent loss of them when the user wants to leave the page. It's switched off by the system setting "Confirm_navigation".
+
+1.0.4-pl
+==============
+- Added recursive call.
+
+1.0.3-pl
+==============
+- Added ability to get the value of next tags: [[~5]], [[%lexicon_entry]], [[++system_setting]] and [[#10.pagetitle]]. The last one will be parsed if pdoParser is used (see http://docs.modx.pro/en/components/pdotools/parser#fastField-tag for more information).
+- Now you can select entire [[!mySnippet@propertySet? &param=`1`]]. tagElementPlugin can get correct tag name from this selection.
+
+1.0.2-pl
+==============
+- Fixed error with path in the plugin.
+
+1.0.1-pl
+==============
+- Added php and fenom syntax highlighting.
+
+1.0.0-pl
+==============
+- Initial release.

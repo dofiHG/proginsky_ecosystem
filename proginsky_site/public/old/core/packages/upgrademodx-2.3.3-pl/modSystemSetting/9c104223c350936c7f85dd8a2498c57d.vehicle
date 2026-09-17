@@ -1,0 +1,16 @@
+<?php return array (
+  'unique_key' => 'key',
+  'preserve_keys' => true,
+  'update_object' => false,
+  'namespace' => 'upgrademodx',
+  'resolve' => NULL,
+  'validate' => NULL,
+  'vehicle_package' => 'transport',
+  'vehicle_class' => 'xPDOObjectVehicle',
+  'guid' => '6d9a79921c999c3f9e8234966eab8c8d',
+  'package' => 'modx',
+  'class' => 'modSystemSetting',
+  'signature' => '9c104223c350936c7f85dd8a2498c57d',
+  'native_key' => 'ugm_github_timeout',
+  'object' => '{"key":"ugm_github_timeout","value":"6","xtype":"textfield","namespace":"upgrademodx","area":"GitHub","editedon":null,"name":"setting_ugm_github_timeout","description":"setting_ugm_github_timeout_desc"}',
+);

@@ -1,0 +1,16 @@
+<?php return array (
+  'unique_key' => 'key',
+  'preserve_keys' => true,
+  'update_object' => false,
+  'namespace' => 'upgrademodx',
+  'resolve' => NULL,
+  'validate' => NULL,
+  'vehicle_package' => 'transport',
+  'vehicle_class' => 'xPDOObjectVehicle',
+  'guid' => 'aad66a409a11f18e52d580de07722c10',
+  'package' => 'modx',
+  'class' => 'modSystemSetting',
+  'signature' => '683239c3e2336f8b475aedd40b197a3f',
+  'native_key' => 'ugm_hide_when_no_upgrade',
+  'object' => '{"key":"ugm_hide_when_no_upgrade","value":"0","xtype":"combo-boolean","namespace":"upgrademodx","area":"Widget","editedon":null,"name":"Hide When No Upgrade","description":"Hide widget when no upgrade is available: default: No"}',
+);

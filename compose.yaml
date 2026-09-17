@@ -1,0 +1,145 @@
+services:
+  api:
+    build:
+      context: ./proginsky.api
+      dockerfile: Dockerfile
+    expose:
+      - "8888"
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:8888:8888"
+    environment:
+      DATABASE_URL: ${DATABASE_URL}
+      REDIS_URL: redis://redis:6379/0
+      ROBOKASSA_MERCHANT_LOGIN: ${ROBOKASSA_MERCHANT_LOGIN}
+      ROBOKASSA_PASSWORD_1: ${ROBOKASSA_PASSWORD_1}
+      ROBOKASSA_PASSWORD_2: ${ROBOKASSA_PASSWORD_2}
+      ROBOKASSA_IS_TEST: ${ROBOKASSA_IS_TEST}
+      MOODLE_BASE_URL: ${MOODLE_BASE_URL}
+      MOODLE_REST_TOKEN: ${MOODLE_REST_TOKEN}
+      MOODLE_COURSE_ID: ${MOODLE_COURSE_ID}
+      MOODLE_ROLE_ID: ${MOODLE_ROLE_ID}
+    volumes:
+      - ./proginsky_storage:/opt/proginsky_ecosystem/proginsky_storage
+    depends_on:
+      database:
+        condition: service_healthy
+    networks:
+      - proginsky-ecosystem
+
+  database:
+    image: postgres:17
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - ./proginsky_database/data:/var/lib/postgresql/data
+    logging:
+      driver: "none"
+    ports:
+      - "127.0.0.1:5432:5432"
+    healthcheck:
+      test:
+        ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 10s
+    networks:
+      - proginsky-ecosystem
+
+  funnel-bot:
+    build:
+      context: ./proginsky_funnel_bot
+      dockerfile: Dockerfile
+    environment:
+      MARKETING_BOT_TOKEN: ${MARKETING_BOT_TOKEN}
+      CLUB_CHANNEL_ID: ${CLUB_CHANNEL_ID}
+    restart: unless-stopped
+    volumes:
+      - /opt/proginsky_ecosystem/proginsky_storage:/opt/proginsky_ecosystem/proginsky_storage
+    depends_on:
+      - api
+    networks:
+      - proginsky-ecosystem
+
+  club-bot:
+    build:
+      context: ./proginsky_club_bot
+      dockerfile: Dockerfile
+    environment:
+      CLUB_BOT_TOKEN: ${CLUB_BOT_TOKEN}
+      CLUB_CHANNEL_ID: ${CLUB_CHANNEL_ID}
+      REDIS_URL: redis://redis:6379/0
+    restart: unless-stopped
+    volumes:
+      - /opt/proginsky_ecosystem/proginsky_storage:/opt/proginsky_ecosystem/proginsky_storage
+    depends_on:
+      - api
+      - redis
+    networks:
+      - proginsky-ecosystem
+
+  admin-bot:
+    build:
+      context: ./proginsky_admin
+      dockerfile: Dockerfile
+    environment:
+      ADMIN_BOT_TOKEN: ${ADMIN_BOT_TOKEN}
+      ADMIN_IDS: ${ADMIN_IDS}
+    restart: unless-stopped
+    volumes:
+      - /opt/proginsky_ecosystem/proginsky_storage:/opt/proginsky_ecosystem/proginsky_storage
+    depends_on:
+      - api
+    networks:
+      - proginsky-ecosystem
+
+  redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+    networks:
+      - proginsky-ecosystem
+
+  mail-service:
+    build:
+      context: ./proginsky_mail_service
+      dockerfile: Dockerfile
+    environment:
+      DATABASE_URL: ${DATABASE_URL}
+      SMTP_SERVER: ${SMTP_SERVER}
+      SMTP_SECURE: ${SMTP_SECURE}
+      SMTP_AUTH_TYPE: ${SMTP_AUTH_TYPE}
+      SMTP_USER: ${SMTP_USER}
+      SMTP_PASS: ${SMTP_PASS}
+    volumes:
+      - ./proginsky_storage:/opt/proginsky_ecosystem/proginsky_storage
+    restart: unless-stopped
+    expose:
+      - "8890"
+    depends_on:
+      - database
+    networks:
+      - proginsky-ecosystem
+
+  vaultwarden:
+    image: vaultwarden/server:latest
+    container_name: proginsky-vaultwarden
+    restart: unless-stopped
+    environment:
+      DOMAIN: ${VAULTWARDEN_DOMAIN}
+      SIGNUPS_ALLOWED: "true"
+      SIGNUPS_VERIFY: "false"
+      INVITATIONS_ALLOWED: "true"
+      ORG_CREATION_USERS: ${VAULTWARDEN_OWNER_EMAIL}
+      ADMIN_TOKEN: ${VAULTWARDEN_ADMIN_TOKEN}
+      ORG_EVENTS_ENABLED: "true"
+    volumes:
+      - ./proginsky_vaultwarden/data:/data
+    ports:
+      - "127.0.0.1:8222:80"
+
+networks:
+  proginsky-ecosystem:

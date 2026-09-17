@@ -1,0 +1,16 @@
+<?php return array (
+  'unique_key' => 'key',
+  'preserve_keys' => true,
+  'update_object' => false,
+  'namespace' => 'autoredirector',
+  'resolve' => NULL,
+  'validate' => NULL,
+  'vehicle_package' => 'transport',
+  'vehicle_class' => 'xPDOObjectVehicle',
+  'guid' => '9d756654bc669e1137938b2428393922',
+  'package' => 'modx',
+  'class' => 'modSystemSetting',
+  'signature' => '84bad7893c890093e3ae3633c45f2b83',
+  'native_key' => 'autoredirector_clear_get',
+  'object' => '{"key":"autoredirector_clear_get","value":false,"xtype":"combo-boolean","namespace":"autoredirector","area":"autoredirector_main","editedon":null}',
+);

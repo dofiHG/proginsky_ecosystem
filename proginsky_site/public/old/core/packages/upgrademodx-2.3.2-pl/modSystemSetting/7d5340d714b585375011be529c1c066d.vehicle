@@ -1,0 +1,16 @@
+<?php return array (
+  'unique_key' => 'key',
+  'preserve_keys' => true,
+  'update_object' => false,
+  'namespace' => 'upgrademodx',
+  'resolve' => NULL,
+  'validate' => NULL,
+  'vehicle_package' => 'transport',
+  'vehicle_class' => 'xPDOObjectVehicle',
+  'guid' => 'f316002dfe528fa9fcb2bbfc80869e94',
+  'package' => 'modx',
+  'class' => 'modSystemSetting',
+  'signature' => '7d5340d714b585375011be529c1c066d',
+  'native_key' => 'ugm_hide_when_no_upgrade',
+  'object' => '{"key":"ugm_hide_when_no_upgrade","value":"0","xtype":"combo-boolean","namespace":"upgrademodx","area":"Widget","editedon":null,"name":"setting_ugm_hide_when_no_upgrade","description":"setting_ugm_hide_when_no_upgrade_desc"}',
+);

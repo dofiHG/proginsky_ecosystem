@@ -1,0 +1,16 @@
+<?php return array (
+  'unique_key' => 'key',
+  'preserve_keys' => true,
+  'update_object' => false,
+  'namespace' => 'upgrademodx',
+  'resolve' => NULL,
+  'validate' => NULL,
+  'vehicle_package' => 'transport',
+  'vehicle_class' => 'xPDOObjectVehicle',
+  'guid' => '87f007b9442cdbfdec40d9f2fc70e099',
+  'package' => 'modx',
+  'class' => 'modSystemSetting',
+  'signature' => 'd6d2cbd7c26c571a92ad470185275c66',
+  'native_key' => 'ugm_ssl_verify_peer',
+  'object' => '{"key":"ugm_ssl_verify_peer","value":"1","xtype":"combo-boolean","namespace":"upgrademodx","area":"Download","editedon":null,"name":"SSL Verify Peer","description":"For security, have cURL verify the identity of the server"}',
+);

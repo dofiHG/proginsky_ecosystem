@@ -1,0 +1,16 @@
+<?php return array (
+  'unique_key' => 'key',
+  'preserve_keys' => true,
+  'update_object' => false,
+  'namespace' => 'upgrademodx',
+  'resolve' => NULL,
+  'validate' => NULL,
+  'vehicle_package' => 'transport',
+  'vehicle_class' => 'xPDOObjectVehicle',
+  'guid' => '455abb7f1f6bf434faf6629e0ceaaa6a',
+  'package' => 'modx',
+  'class' => 'modSystemSetting',
+  'signature' => '255e9e192c049b34e32b29637cf78ea2',
+  'native_key' => 'ugm_ssl_verify_peer',
+  'object' => '{"key":"ugm_ssl_verify_peer","value":"1","xtype":"combo-boolean","namespace":"upgrademodx","area":"Download","editedon":null,"name":"setting_ugm_ssl_verify_peer","description":"setting_ugm_ssl_verify_peer_desc"}',
+);

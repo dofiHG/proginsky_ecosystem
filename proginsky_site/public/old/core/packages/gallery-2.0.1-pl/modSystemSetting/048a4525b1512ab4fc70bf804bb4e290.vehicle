@@ -1,0 +1,16 @@
+<?php return array (
+  'unique_key' => 'key',
+  'preserve_keys' => true,
+  'update_object' => false,
+  'namespace' => 'gallery',
+  'resolve' => NULL,
+  'validate' => NULL,
+  'vehicle_package' => 'transport',
+  'vehicle_class' => 'xPDOObjectVehicle',
+  'guid' => '652e676467c69e35b580d0fac8fea292',
+  'package' => 'modx',
+  'class' => 'modSystemSetting',
+  'signature' => '048a4525b1512ab4fc70bf804bb4e290',
+  'native_key' => 'gallery.thumbs_prepend_site_url',
+  'object' => '{"key":"gallery.thumbs_prepend_site_url","value":0,"xtype":"combo-boolean","namespace":"gallery","area":"backend","editedon":null}',
+);

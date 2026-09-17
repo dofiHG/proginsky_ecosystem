@@ -1,0 +1,16 @@
+<?php return array (
+  'unique_key' => 'key',
+  'preserve_keys' => true,
+  'update_object' => false,
+  'namespace' => 'upgrademodx',
+  'resolve' => NULL,
+  'validate' => NULL,
+  'vehicle_package' => 'transport',
+  'vehicle_class' => 'xPDOObjectVehicle',
+  'guid' => '9031cbebb37c3aac4402d6a18be49920',
+  'package' => 'modx',
+  'class' => 'modSystemSetting',
+  'signature' => 'b0587873d93d5973165b91fe02208349',
+  'native_key' => 'ugm_last_check',
+  'object' => '{"key":"ugm_last_check","value":"2021-03-15 10:56:23","xtype":"textfield","namespace":"upgrademodx","area":"Widget","editedon":null,"name":"Last Check","description":"Date and time of last check -- set automatically"}',
+);

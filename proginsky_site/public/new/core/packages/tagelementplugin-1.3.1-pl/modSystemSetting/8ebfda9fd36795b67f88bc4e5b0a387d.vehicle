@@ -1,0 +1,16 @@
+<?php return array (
+  'unique_key' => 'key',
+  'preserve_keys' => true,
+  'update_object' => false,
+  'namespace' => 'tagelementplugin',
+  'resolve' => NULL,
+  'validate' => NULL,
+  'vehicle_package' => 'transport',
+  'vehicle_class' => 'xPDOObjectVehicle',
+  'guid' => '6b2ab3d353ff0acbcc4d976ea77f408b',
+  'package' => 'modx',
+  'class' => 'modSystemSetting',
+  'signature' => '8ebfda9fd36795b67f88bc4e5b0a387d',
+  'native_key' => 'tagelementplugin_quick_chunk_editor_keys',
+  'object' => '{"key":"tagelementplugin_quick_chunk_editor_keys","value":"{key: Ext.EventObject.C, ctrl: true, shift: false, alt: true}","xtype":"textfield","namespace":"tagelementplugin","area":"tagelementplugin_main","editedon":null}',
+);

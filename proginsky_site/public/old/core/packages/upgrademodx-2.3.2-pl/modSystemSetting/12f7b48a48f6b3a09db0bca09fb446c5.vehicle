@@ -1,0 +1,16 @@
+<?php return array (
+  'unique_key' => 'key',
+  'preserve_keys' => true,
+  'update_object' => false,
+  'namespace' => 'upgrademodx',
+  'resolve' => NULL,
+  'validate' => NULL,
+  'vehicle_package' => 'transport',
+  'vehicle_class' => 'xPDOObjectVehicle',
+  'guid' => '2bb7702ca9494133e4529522d7eec54b',
+  'package' => 'modx',
+  'class' => 'modSystemSetting',
+  'signature' => '12f7b48a48f6b3a09db0bca09fb446c5',
+  'native_key' => 'ugm_force_pcl_zip',
+  'object' => '{"key":"ugm_force_pcl_zip","value":"0","xtype":"combo-boolean","namespace":"upgrademodx","area":"Download","editedon":null,"name":"setting_ugm_force_pcl_zip","description":"setting_ugm_force_pcl_zip_desc"}',
+);

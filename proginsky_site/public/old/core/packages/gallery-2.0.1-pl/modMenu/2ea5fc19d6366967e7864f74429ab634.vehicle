@@ -1,0 +1,30 @@
+<?php return array (
+  'preserve_keys' => true,
+  'update_object' => true,
+  'unique_key' => 'text',
+  'related_objects' => true,
+  'related_object_attributes' => 
+  array (
+    'Action' => 
+    array (
+      'preserve_keys' => false,
+      'update_object' => true,
+      'unique_key' => 
+      array (
+        0 => 'namespace',
+        1 => 'controller',
+      ),
+    ),
+  ),
+  'namespace' => 'gallery',
+  'resolve' => NULL,
+  'validate' => NULL,
+  'vehicle_package' => 'transport',
+  'vehicle_class' => 'xPDOObjectVehicle',
+  'guid' => '3bb987b258e614d436ec5802a027a4b4',
+  'package' => 'modx',
+  'class' => 'modMenu',
+  'signature' => '2ea5fc19d6366967e7864f74429ab634',
+  'native_key' => 'gallery',
+  'object' => '{"text":"gallery","parent":"components","action":"home","description":"gallery.menu_desc","icon":"","menuindex":0,"params":"","handler":"","permissions":"","namespace":"gallery"}',
+);

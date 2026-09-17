@@ -1,0 +1,15 @@
+.env
+.env.*
+__pycache__/
+*.pyc
+*.log
+.venv/
+venv/
+.idea/
+.vscode/
+
+postgres_data/
+redis_data/
+
+*.sqlite3
+*.db
