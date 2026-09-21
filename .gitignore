@@ -10,6 +10,10 @@ venv/
 
 postgres_data/
 redis_data/
+proginsky_database/
+proginsky_vaultwarden
 
 *.sqlite3
-*.db
+*.dbproginsky_database/data/
+proginsky_vaultwarden/data/
+proginsky_site/core/cache/

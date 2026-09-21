@@ -8,6 +8,7 @@ async def buddy_pairs_listener(bot: Bot):
     redis = Redis.from_url(os.getenv("REDIS_URL"), decode_responses=True,)
     pubsub = redis.pubsub()
     await pubsub.subscribe("buddy_pairs")
+    print("Redis Buddy listener запущен", flush=True)
     try:
         async for message in pubsub.listen():
             if message["type"] != "message":
@@ -24,9 +25,9 @@ async def buddy_pairs_listener(bot: Bot):
                     try:
                         await bot.send_message(chat_id=telegram_user_id, text=text,)
                     except Exception as error:
-                        print(f"Не удалось отправить сообщение пользователю {telegram_user_id}: {error}")
+                        print(f"Не удалось отправить сообщение пользователю {telegram_user_id}: {error}", flush=True)
             except Exception as error:
-                print(f"Ошибка обработки buddy_pairs: {error}")
+                print(f"Ошибка обработки buddy_pairs: {error}", flush=True)
     except asyncio.CancelledError:
         raise
     finally:

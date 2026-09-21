@@ -110,7 +110,7 @@ async def get_club_members():
 
 async def delete_expired_accesses(trail: bool = False):
     timeout = aiohttp.ClientTimeout(10)
-    payload={"trail": trail}
+    payload={"trail": str(trail).lower()}
     try:
         async with aiohttp.ClientSession(timeout=timeout) as session:
             async with session.delete(f"{API_URL}/expired_access", params=payload) as response:
@@ -180,9 +180,9 @@ async def get_referal_token(telegram_user_id: int):
     except aiohttp.ClientError:
         return False 
 
-async def give_trail_access(telegram_user_id: int):
+async def give_trail_access(telegram_user_id: int, invite_link: str):
     timeout = aiohttp.ClientTimeout(total=10)
-    payload = {"telegram_user_id": telegram_user_id}
+    payload = {"telegram_user_id": telegram_user_id, "invite_link": invite_link}
     try:
         async with aiohttp.ClientSession(timeout=timeout) as session:
             async with session.post(f"{API_URL}/give_club_trail_access", params=payload) as response:
@@ -227,3 +227,257 @@ async def get_data_for_menu(telegram_user_id: int):
                 return await response.json()
     except aiohttp.ClientError:
         return False
+async def get_club_state(telegram_user_id: int):
+    timeout = aiohttp.ClientTimeout(total=10)
+    try:
+        async with aiohttp.ClientSession(timeout=timeout) as session:
+            async with session.get(f"{API_URL}/club_state", params={"telegram_user_id": telegram_user_id}) as response:
+                if response.status != 200:
+                    return None
+                return await response.json()
+    except aiohttp.ClientError:
+        return None
+
+async def get_club_plans():
+    timeout = aiohttp.ClientTimeout(total=10)
+    try:
+        async with aiohttp.ClientSession(timeout=timeout) as session:
+            async with session.get(f"{API_URL}/club_plans") as response:
+                if response.status != 200:
+                    return []
+                return await response.json()
+    except aiohttp.ClientError:
+        return []
+
+async def get_checkout_preview(telegram_user_id: int, tariff_slug: str):
+    timeout = aiohttp.ClientTimeout(total=10)
+    try:
+        async with aiohttp.ClientSession(timeout=timeout) as session:
+            async with session.get(
+                f"{API_URL}/club_checkout_preview",
+                params={"telegram_user_id": telegram_user_id, "tariff_slug": tariff_slug},
+            ) as response:
+                if response.status != 200:
+                    return None
+                return await response.json()
+    except aiohttp.ClientError:
+        return None
+
+async def create_club_checkout(telegram_user_id: int, tariff_slug: str, recurring_requested: bool = False):
+    timeout = aiohttp.ClientTimeout(total=10)
+    payload = {
+        "telegram_user_id": telegram_user_id,
+        "tariff_slug": tariff_slug,
+        "recurring_requested": recurring_requested,
+    }
+    try:
+        async with aiohttp.ClientSession(timeout=timeout) as session:
+            async with session.post(f"{API_URL}/club_checkout_create", json=payload) as response:
+                if response.status not in (200, 201):
+                    return None
+                return await response.json()
+    except aiohttp.ClientError:
+        return None
+
+async def get_buddy_data(telegram_user_id: int):
+    timeout = aiohttp.ClientTimeout(total=10)
+    try:
+        async with aiohttp.ClientSession(timeout=timeout) as session:
+            async with session.get(f"{API_URL}/get_buddy_data", params={"telegram_user_id": telegram_user_id}) as response:
+                if response.status != 200:
+                    return {"status": "none"}
+                return await response.json()
+    except aiohttp.ClientError:
+        return {"status": "none"}
+
+async def send_buddy_decision(telegram_user_id: int, decision: str):
+    timeout = aiohttp.ClientTimeout(total=10)
+    payload = {"telegram_user_id": telegram_user_id, "decision": decision}
+    try:
+        async with aiohttp.ClientSession(timeout=timeout) as session:
+            async with session.post(f"{API_URL}/buddy_decision", json=payload) as response:
+                return response.status == 200 and await response.json()
+    except aiohttp.ClientError:
+        return False
+
+async def report_buddy_nonresponse(telegram_user_id: int):
+    timeout = aiohttp.ClientTimeout(total=10)
+    try:
+        async with aiohttp.ClientSession(timeout=timeout) as session:
+            async with session.post(f"{API_URL}/buddy_nonresponse", params={"telegram_user_id": telegram_user_id}) as response:
+                return response.status == 200 and await response.json()
+    except aiohttp.ClientError:
+        return False
+
+async def process_buddy_cycles():
+    timeout = aiohttp.ClientTimeout(total=20)
+    try:
+        async with aiohttp.ClientSession(timeout=timeout) as session:
+            async with session.post(f"{API_URL}/process_buddy_cycles") as response:
+                if response.status != 200:
+                    return []
+                return await response.json()
+    except aiohttp.ClientError:
+        return []
+
+async def get_challenges(telegram_user_id: int):
+    timeout = aiohttp.ClientTimeout(total=10)
+    try:
+        async with aiohttp.ClientSession(timeout=timeout) as session:
+            async with session.get(f"{API_URL}/challenges", params={"telegram_user_id": telegram_user_id}) as response:
+                if response.status != 200:
+                    return []
+                return await response.json()
+    except aiohttp.ClientError:
+        return []
+
+async def join_challenge(telegram_user_id: int, challenge_id: int, mode: str = "solo", teammate_telegram_user_id: int | None = None):
+    timeout = aiohttp.ClientTimeout(total=10)
+    payload = {"telegram_user_id": telegram_user_id, "challenge_id": challenge_id, "mode": mode, "teammate_telegram_user_id": teammate_telegram_user_id}
+    try:
+        async with aiohttp.ClientSession(timeout=timeout) as session:
+            async with session.post(f"{API_URL}/challenge_join", json=payload) as response:
+                if response.status != 200:
+                    return None
+                return await response.json()
+    except aiohttp.ClientError:
+        return None
+
+async def submit_challenge(telegram_user_id: int, challenge_id: int, submission_type: str, payload_value: str):
+    timeout = aiohttp.ClientTimeout(total=15)
+    payload = {
+        "telegram_user_id": telegram_user_id,
+        "challenge_id": challenge_id,
+        "submission_type": submission_type,
+        "payload": payload_value,
+    }
+    try:
+        async with aiohttp.ClientSession(timeout=timeout) as session:
+            async with session.post(f"{API_URL}/challenge_submit", json=payload) as response:
+                if response.status != 200:
+                    try:
+                        error = await response.json()
+                        return {"ok": False, "error": error.get("detail")}
+                    except Exception:
+                        return {"ok": False, "error": "submission_failed"}
+                return await response.json()
+    except aiohttp.ClientError:
+        return {"ok": False, "error": "api_unavailable"}
+
+async def cancel_recurring(telegram_user_id: int):
+    timeout = aiohttp.ClientTimeout(total=10)
+    try:
+        async with aiohttp.ClientSession(timeout=timeout) as session:
+            async with session.post(f"{API_URL}/club_cancel_recurring", params={"telegram_user_id": telegram_user_id}) as response:
+                return response.status == 200 and await response.json()
+    except aiohttp.ClientError:
+        return False
+
+async def get_reactivation_users(days: int):
+    timeout = aiohttp.ClientTimeout(total=10)
+    try:
+        async with aiohttp.ClientSession(timeout=timeout) as session:
+            async with session.get(f"{API_URL}/reactivation_users", params={"days": days}) as response:
+                if response.status != 200:
+                    return []
+                return await response.json()
+    except aiohttp.ClientError:
+        return []
+
+async def create_partner_withdrawal(telegram_user_id: int, amount: float, details: dict):
+    timeout = aiohttp.ClientTimeout(total=10)
+    payload = {"telegram_user_id": telegram_user_id, "amount": amount, "details": details}
+    try:
+        async with aiohttp.ClientSession(timeout=timeout) as session:
+            async with session.post(f"{API_URL}/partner_withdrawal", json=payload) as response:
+                if response.status != 200:
+                    return {"ok": False, "error": "request_failed"}
+                return await response.json()
+    except aiohttp.ClientError:
+        return {"ok": False, "error": "api_unavailable"}
+
+async def release_stale_club_payments(hours: int = 24):
+    timeout = aiohttp.ClientTimeout(total=20)
+    try:
+        async with aiohttp.ClientSession(timeout=timeout) as session:
+            async with session.post(f"{API_URL}/release_stale_club_payments", params={"hours": hours}) as response:
+                if response.status != 200:
+                    return []
+                return await response.json()
+    except aiohttp.ClientError:
+        return []
+
+async def get_pending_payment_success_notifications(limit: int = 20) -> list[dict]:
+    timeout = aiohttp.ClientTimeout(total=10)
+    try:
+        async with aiohttp.ClientSession(timeout=timeout) as session:
+            async with session.get(f"{API_URL}/club_payment_notifications/pending", params={"limit": limit},) as response:
+                if response.status != 200:
+                    return []
+                return await response.json()
+    except aiohttp.ClientError as error:
+        print(f"Не удалось получить payment-success уведомления: {error}", flush=True)
+        return []
+
+async def mark_payment_success_notification_sent(order_id: int) -> bool:
+    timeout = aiohttp.ClientTimeout(total=10)
+    try:
+        async with aiohttp.ClientSession(timeout=timeout) as session:
+            async with session.post(f"{API_URL}/club_payment_notifications/{order_id}/sent") as response:
+                if response.status != 200:
+                    body = await response.text()
+                    print(f"Не удалось отметить payment-success {order_id} отправленным: " f"HTTP {response.status}, body={body}", flush=True,)
+                    return False
+                return True
+    except aiohttp.ClientError as error:
+        print(f"Не удалось отметить payment-success {order_id} отправленным: {error}", flush=True)
+        return False
+
+async def fail_payment_success_notification(order_id: int, error: str) -> bool:
+    timeout = aiohttp.ClientTimeout(total=10)
+    try:
+        async with aiohttp.ClientSession(timeout=timeout) as session:
+            async with session.post(f"{API_URL}/club_payment_notifications/{order_id}/failed", json={"error": str(error)},) as response:
+                return response.status == 200
+    except aiohttp.ClientError as request_error:
+        print(f"Не удалось вернуть payment-success {order_id} в pending: {request_error}", flush=True,)
+        return False
+
+async def release_stuck_payment_success_notifications() -> int:
+    timeout = aiohttp.ClientTimeout(total=10)
+    try:
+        async with aiohttp.ClientSession(timeout=timeout) as session:
+            async with session.post(f"{API_URL}/club_payment_notifications/release_stuck") as response:
+                if response.status != 200:
+                    return 0
+                payload = await response.json()
+                return int(payload.get("released") or 0)
+    except (aiohttp.ClientError, ValueError, TypeError):
+        return 0
+
+async def cancel_last_payment(telegram_user_id: int):
+    timeout = aiohttp.ClientTimeout(total=10)
+    payload = {"telegram_user_id": telegram_user_id}
+    try:
+        async with aiohttp.ClientSession(timeout=timeout) as session:
+            async with session.post(f"{API_URL}/cancel_last_payment", params=payload) as response:
+                if response.status != 200:
+                    return False
+                return await response.json()
+    except (aiohttp.ClientError, ValueError, TypeError):
+        return False
+
+async def save_payment_success_invite_link(order_id: int, invite_link: str):
+    timeout = aiohttp.ClientTimeout(total=10)
+    payload = {"invite_link": invite_link}
+    try:
+        async with aiohttp.ClientSession(timeout=timeout) as session:
+            async with session.post(
+                f"{API_URL}/club_payment_notifications/{order_id}/invite",
+                json=payload,
+            ) as response:
+                if response.status != 200:
+                    return None
+                return await response.json()
+    except aiohttp.ClientError:
+        return None

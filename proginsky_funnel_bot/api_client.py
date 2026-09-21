@@ -81,3 +81,32 @@ async def check_user_channel_access(telegram_user_id: int):
                 return await response.json()
     except aiohttp.ClientError:
         return False
+async def try_to_add_referral_token(token: str, telegram_user_id: int):
+    timeout = aiohttp.ClientTimeout(total=10)
+    try:
+        async with aiohttp.ClientSession(timeout=timeout) as session:
+            async with session.post(
+                f"{API_URL}/try_to_add_token",
+                params={"token": token, "telegram_user_id": telegram_user_id},
+            ) as response:
+                if response.status != 200:
+                    return False
+                return await response.json()
+    except aiohttp.ClientError:
+        return False
+
+async def record_acquisition(telegram_user_id: int, source: str | None = None, referrer_link_token: str | None = None):
+    timeout = aiohttp.ClientTimeout(total=10)
+    payload = {
+        "telegram_user_id": telegram_user_id,
+        "source": source,
+        "campaign": None,
+        "payload": {},
+        "referrer_link_token": referrer_link_token,
+    }
+    try:
+        async with aiohttp.ClientSession(timeout=timeout) as session:
+            async with session.post(f"{API_URL}/acquisition_touchpoint", json=payload) as response:
+                return response.status == 200
+    except aiohttp.ClientError:
+        return False
